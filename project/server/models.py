@@ -56,8 +56,8 @@ class User(db.Model):
         except jwt.InvalidTokenError:
             return 'Invalid token. Please log in again.'
 
-def db_init():
-    db.create_all()
+
 
 if __name__ == '__main__':
-    init_db()
+    if not os.path.exists('db.sqlite'):
+        db.create_all()
