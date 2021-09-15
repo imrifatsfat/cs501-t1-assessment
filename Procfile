@@ -1,4 +1,4 @@
-web: gunicorn project:__init__
+web: gunicorn project.server:__init__
 heroku ps:scale web=1
 
 
