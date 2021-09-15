@@ -1,7 +1,7 @@
 from flask import Blueprint, request, make_response, jsonify
 from flask.views import MethodView
 
-from project.server import bcrypt, db
+from project.server import bcrypt, db, app
 from project.server.models import User
 
 auth_blueprint = Blueprint('auth', __name__)
@@ -38,7 +38,7 @@ class RegisterAPI(MethodView):
                 responseObject = {
                     'status': 'success',
                     'message': 'Successfully registered.',
-                    'auth_token': auth_token.decode()
+                    'auth_token': auth_token
                 }
                 return make_response(jsonify(responseObject)), 201
             except Exception as e:
@@ -54,6 +54,19 @@ class RegisterAPI(MethodView):
             }
             return make_response(jsonify(responseObject)), 202
 
+@app.route('/users/index')
+def get():
+    rows = User.query.all()
+    tmpUsers = {}
+    users = []
+
+    columns = User.__table__.columns.keys()
+    for r in rows:
+        for c in columns:
+            tmpUsers[c] = getattr(r, c)
+        users.append(tmpUsers)
+        tmpUsers = {}
+    return make_response(jsonify(users)), 201
 
 # define the API resources
 registration_view = RegisterAPI.as_view('register_api')
