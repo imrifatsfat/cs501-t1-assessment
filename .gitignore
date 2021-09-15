@@ -10,8 +10,3 @@ __pycache__
 *.coverage
 .DS_Store
 env.sh
-migrations
-
-diagnostic
-diagnostic_test
-diagnostic_test.db
