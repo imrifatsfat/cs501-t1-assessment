@@ -58,5 +58,5 @@ class User(db.Model):
 
 
 @app.before_first_request
-if __name__ == '__main__':
+def crea_tables():
     db.create_all()
