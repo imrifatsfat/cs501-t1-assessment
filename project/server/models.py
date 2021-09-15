@@ -57,7 +57,6 @@ class User(db.Model):
             return 'Invalid token. Please log in again.'
 
 
-
+@app.before_first_request
 if __name__ == '__main__':
-    if not os.path.exists('db.sqlite'):
-        db.create_all()
+    db.create_all()
