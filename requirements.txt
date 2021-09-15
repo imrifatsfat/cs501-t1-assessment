@@ -15,7 +15,7 @@ GnuPG
 gunicorn==20.0.4
 itsdangerous==1.1.0
 Jinja2==2.11.3
-libcomps<=0.1.5
+libcomps<=0.1.12
 Mako==1.1.4.dev0
 MarkupSafe==1.1.1
 Paste==3.5.0
